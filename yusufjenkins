@@ -1,0 +1,16 @@
+pipeline{
+  agent any
+  tools{
+    maven "Maven 3.8.5"
+  }
+  stages{
+    stage("1.CodeClone"){
+      steps{
+        git credentialsId: 'Github-Cred', url: 'https://github.com/team16flight/web-app.git'
+      }
+    }
+    stage("2.Build"){
+      steps{
+        sh "mvn clean package"
+      }
+    }
